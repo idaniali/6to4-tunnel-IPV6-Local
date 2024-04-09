@@ -194,3 +194,65 @@ exit 0
 sudo chmod +x /etc/rc.local
 
 ```
+
+
+
+# نحوه غیر فعال سازی تانل مابین سرور ها 
+
+**Step i:** 
+در سرور خارج کار های زیر رو انجام میدیم :‌
+
+1. ابتدا دستور زیر رو اجرا میکنیم تا فایل rc.local رو حذف کنیم :
+```shell
+rm -f /etc/rc.local
+```
+1. حذف تونل 6to4 در سرور خارج:
+```shell
+ip tunnel del 6to4_To_IR
+```
+3. حذف تونل IPIPv6 یا GRE6 در سرور خارج:
+
+برای IPIPv6:
+```shell
+ip -6 tunnel del ipip6Tun_To_IR
+```
+برای GRE6:
+```shell
+ip -6 tunnel del GRE6Tun_To_IR
+```
+4. سرور رو ریبوت میکنیم : 
+```shell
+reboot
+```
+
+**Step ii:** 
+در سرور ایران کار های زیر رو انجام میدیم : 
+
+1. جلوگیری از forward شدن ترافیک :
+```shell
+iptables -t nat -F
+```
+
+2. فایل rc.local رو حذف میکنیم :
+```shell
+rm -f /etc/rc.local
+```
+
+3. حذف تونل IPIPv6 یا GRE6 در سرور ایران:
+
+برای IPIPv6:
+```shell
+ip -6 tunnel del ipip6Tun_To_KH
+```
+برای GRE6:
+```shell
+ip -6 tunnel del GRE6Tun_To_KH
+```
+4. سرور رو ریبوت میکنیم : 
+```shell
+reboot
+```
+ 
+
+اگر مراحل بالا به درستی انجام شوند، تونل‌ ایجاد شده حذف خواهد شد. اطمینان حاصل کنید که این دستورات را با دسترسی مدیریتی مناسب (sudo) اجرا کنید.
+
