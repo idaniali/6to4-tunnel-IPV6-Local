@@ -35,7 +35,7 @@
 >راهنمایی : (در قسمت `<IPv4-KHAREJ>` ، آیپی ورژن 4 پابلیک سرور خارج رو قرار میدیم و در بخش `<IPv4-IRAN>` ، آیپی ورژن 4 پابلیک ایران رو قرار میدیم)
 ```shell
 ip tunnel add 6to4_To_KH mode sit remote <IPv4-KHAREJ> local <IPv4-IRAN>
-ip -6 addr fde8:b030:25cf::de01/64 dev 6to4_To_KH
+ip -6 addr add fde8:b030:25cf::de01/64 dev 6to4_To_KH
 ip link set 6to4_To_KH mtu 1480
 ip link set 6to4_To_KH up
 ```
@@ -135,7 +135,7 @@ sudo nano /etc/rc.local && sudo chmod +x /etc/rc.local
 ```shell
 #! /bin/bash
 ip tunnel add 6to4_To_KH mode sit remote <IPv4-KHAREJ> local <IPv4-IRAN>
-ip -6 addr fde8:b030:25cf::de01/64 dev 6to4_To_KH
+ip -6 addr add fde8:b030:25cf::de01/64 dev 6to4_To_KH
 ip link set 6to4_To_KH mtu 1480
 ip link set 6to4_To_KH up
 
