@@ -181,6 +181,11 @@ exit 0
 
 # پاک کردن تانل :
 **در سرور خارج :**
+ابتدا فایل rc.local رو با دستور زیر پاک کنید :
+```
+rm -r rc.local
+```
+و سپس :
 
 ```shell
 ip tunnel del 6to4_To_IR
@@ -189,6 +194,12 @@ ip tunnel del GRE6Tun_To_IR
 
 
 **در سرور ایران :**
+
+ابتدا فایل rc.local رو با دستور زیر پاک کنید :
+```
+rm -r rc.local
+```
+و سپس :
 
 ```shell
 ip tunnel del 6to4_To_KH
